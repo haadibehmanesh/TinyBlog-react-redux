@@ -3,13 +3,11 @@ import Home from "./components/home";
 
 const App = () => {
     return (
-        <>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                </Routes>
-            </BrowserRouter>
-        </>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home />} />
+            </Routes>
+        </BrowserRouter>
     );
 }
 
