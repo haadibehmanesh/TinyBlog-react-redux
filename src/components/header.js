@@ -7,14 +7,14 @@ const Header = () => {
     return (
         <>
             <div className="navbar yellotail">
-                <Link to="/">
+                <Link style={{ textDecoration: 'none' }} to="/">
                     <Navbar.Brand>The daily news</Navbar.Brand>
                 </Link>
 
             </div>
             <div className='nav'>
                 <div className='nav-item'>
-                    <Link to="/home">Home</Link>
+                    <Link to="/">Home</Link> | {" "}
                 </div>
                 <div className='nav-item'>
                     <Link to="/contact">Contact</Link>
