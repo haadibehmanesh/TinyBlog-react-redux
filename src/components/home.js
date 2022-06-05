@@ -1,7 +1,11 @@
+import { AddPostForm } from "../features/posts/AddPostForm";
+import { PostsList } from "../features/posts/postsList"
+
 const Home = () => {
     return (
         <>
-            Home
+            <AddPostForm />
+            <PostsList />
         </>
     );
 }
