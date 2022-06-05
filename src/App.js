@@ -1,13 +1,16 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./components/home";
+import { Container } from "react-bootstrap";
+import { Outlet } from "react-router-dom";
+import Header from "./components/header";
 
 const App = () => {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Home />} />
-            </Routes>
-        </BrowserRouter>
+        <div>
+            <Header />
+            <Container>
+
+                <Outlet />
+            </Container>
+        </div>
     );
 }
 
