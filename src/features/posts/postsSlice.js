@@ -19,7 +19,8 @@ export const postsSlice = createSlice({
             id: nanoid(),
             title,
             content,
-            user: userId
+            user: userId,
+            date: new Date().toISOString(),
           }
         }
       }
