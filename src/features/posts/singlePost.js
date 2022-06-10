@@ -8,10 +8,7 @@ import { selectPostById } from './postsSlice';
 
 const SinglePost = () => {
   const { postId } = useParams();
-  // // const post = useSelector(state =>
-  // //   state.posts.find(post => post.id === postId)
-  // )
-  const post = useSelector(state => selectPostById(state, postId))
+  const post = useSelector(state => selectPostById(state, Number(postId)))
 
   if (!post) {
     return (
@@ -26,10 +23,10 @@ const SinglePost = () => {
       <article className="post">
         <h2>{post.title}</h2>
         <div>
-          <PostAuthor userId={post.user} />
+          <PostAuthor userId={post.userId} />
           <TimeAgo timestamp={post.date} />
         </div>
-        <p className="post-content">{post.content}</p>
+        <p className="post-content">{post.body}</p>
         <ReactionButtons post={post} />
         <Link to={`/editPost/${post.id}`} className="button">
           Edit Post
