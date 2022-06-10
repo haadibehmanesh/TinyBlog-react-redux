@@ -3,7 +3,7 @@ import { createSlice, nanoid, createAsyncThunk } from "@reduxjs/toolkit";
 import { sub } from 'date-fns';
 import axios from "axios";
 
-const POSTS_URL = 'https://jsonplaceholder.typicode.com/posts?_start=0&_limit=5';
+const POSTS_URL = 'https://jsonplaceholder.typicode.com/posts';
 
 const initialState = {
   posts: [],
@@ -97,15 +97,15 @@ const postsSlice = createSlice({
         action.payload.userId = Number(action.payload.userId)
         action.payload.date = new Date().toISOString();
         action.payload.reactions = {
-            thumbsUp: 0,
-            hooray: 0,
-            heart: 0,
-            rocket: 0,
-            eyes: 0
+          thumbsUp: 0,
+          hooray: 0,
+          heart: 0,
+          rocket: 0,
+          eyes: 0
         }
         console.log(action.payload)
         state.posts.push(action.payload)
-    })
+      })
   },
 })
 
@@ -115,7 +115,6 @@ export default postsSlice.reducer
 
 export const selectAllPosts = (state) => state.posts.posts
 
-export const selectPostById = (state, postId) => {
-  state.posts.posts.find((post) => post.id === postId)
-}
+export const selectPostById = (state, postId) => state.posts.posts.find((post) => post.id === postId)
+
 
