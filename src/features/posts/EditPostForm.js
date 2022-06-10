@@ -6,23 +6,20 @@ import { postUpdated, selectPostById } from './postsSlice'
 export const EditPostForm = () => {
   const { postId } = useParams();
 
-  // const post = useSelector(state =>
-  //   state.posts.find(post => post.id === postId)
-  // )
-  const post = useSelector(state => selectPostById(state, postId))
-
+  const post = useSelector(state => selectPostById(state, Number(postId)))
+  
   const [title, setTitle] = useState(post.title)
-  const [content, setContent] = useState(post.content)
+  const [body, setBody] = useState(post.body)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const onTitleChanged = e => setTitle(e.target.value)
-  const onContentChanged = e => setContent(e.target.value)
+  const onContentChanged = e => setBody(e.target.value)
 
   const onSavePostClicked = () => {
-    if (title && content) {
-      dispatch(postUpdated({ id: postId, title, content }))
+    if (title && body) {
+      dispatch(postUpdated({ id: postId, title, body }))
       navigate(`/posts/${postId}`)
     }
   }
@@ -44,7 +41,7 @@ export const EditPostForm = () => {
         <textarea
           id="postContent"
           name="postContent"
-          value={content}
+          value={body}
           onChange={onContentChanged}
         />
       </form>
