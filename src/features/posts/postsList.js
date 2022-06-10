@@ -13,7 +13,7 @@ const PostExcerpt = ({ post }) => {
         <article key={post.id} className="post-excerpt" >
             <h3>{post.title}</h3>
             <div>
-                <PostAuthor userId={post.user} />
+                <PostAuthor userId={post.userId} />
                 <TimeAgo timestamp={post.date} />
             </div>
             <p className="post-content">{post.body.substring(0, 100)}</p>
