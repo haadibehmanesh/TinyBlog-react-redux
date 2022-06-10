@@ -28,7 +28,7 @@ const SinglePost = () => {
         </div>
         <p className="post-content">{post.body}</p>
         <ReactionButtons post={post} />
-        <Link to={`/editPost/${post.id}`} className="button">
+        <Link to={`/posts/edit/${post.id}`} className="button">
           Edit Post
         </Link>
 
