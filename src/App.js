@@ -1,28 +1,23 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
-import Contact from './components/contact';
-import Home from './components/home';
 import SinglePost from "./features/posts/singlePost";
-import Layout from "./components/layout";
 import { EditPostForm } from "./features/posts/EditPostForm";
+import Layout from "./components/layout";
+import { Routes, Route } from 'react-router-dom';
+import Home from "./components/home";
+import Contact from "./components/contact";
 
-export default function App() {
+function App() {
   return (
-    <BrowserRouter>
-
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/posts/:postId" element={<SinglePost />} />
-          <Route path="/editPost/:postId" element={<EditPostForm />} />
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="posts">
+          <Route path=":postId" element={<SinglePost />} />
+          <Route path="edit/:postId" element={<EditPostForm />} />
         </Route>
-
-      </Routes>
-    </BrowserRouter>
-
+        <Route path="contact" element={<Contact />} />
+      </Route>
+    </Routes>
   );
 }
+
+export default App;
