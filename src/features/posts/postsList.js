@@ -1,35 +1,20 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import { Spinner } from '../../components/spinner'
 import PostExcerpt from './PostExcerpt'
-import { selectAllPosts, fetchPosts } from './postsSlice'
+import { selectPostIds, getPostsStatus, getPostsError } from "./postsSlice";
 
 export const PostsList = () => {
-    const dispatch = useDispatch()
-    const posts = useSelector(selectAllPosts)
-
-    const postStatus = useSelector((state) => state.posts.status)
-    const error = useSelector((state) => state.posts.error)
-
-    useEffect(() => {
-        if (postStatus === 'idle') {
-            dispatch(fetchPosts())
-        }
-    }, [postStatus, dispatch])
+    const orderedPostIds = useSelector(selectPostIds)
+    const postStatus = useSelector(getPostsStatus);
+    const error = useSelector(getPostsError);
 
     let content
-
+    
     if (postStatus === 'loading') {
         content = <Spinner text="Loading..." />
     } else if (postStatus === 'succeeded') {
-        // Sort posts in reverse chronological order by datetime string
-        const orderedPosts = posts
-            .slice()
-            .sort((a, b) => (b.date.localeCompare(a.date)))
-
-        content = orderedPosts.map((post) => (
-            <PostExcerpt key={post.id} post={post} />
-        ))
+        content = orderedPostIds.map(postId => <PostExcerpt key={postId} postId={postId} />)
     } else if (postStatus === 'failed') {
         content = <div>{error}</div>
     }
